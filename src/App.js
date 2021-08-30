@@ -1,13 +1,25 @@
 import { Component } from "react";
 import Container from "./Components/Container/Container";
 import ContactForm from "./Components/ContactForm/ContactForm";
+import shortid from "shortid";
 
 export default class App extends Component {
   state = {
     contacts: [],
   };
 
-  formSubmitHandler = (data) => {};
+  formSubmitHandler = (name) => {
+    console.log(name);
+
+    const contact = {
+      id: shortid.generate(),
+      name,
+    };
+
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
+  };
 
   render() {
     return (

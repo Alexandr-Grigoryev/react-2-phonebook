@@ -14,7 +14,9 @@ export default class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.name);
+
+    this.setState({ name: "" });
   };
 
   render() {
@@ -28,7 +30,7 @@ export default class ContactForm extends Component {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
           onChange={this.handleChange}
-          //   value={this.state.name}
+          value={this.state.name}
         />
 
         <button name="" type="submit">
