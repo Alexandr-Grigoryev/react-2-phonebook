@@ -4,6 +4,7 @@ import s from "./ContactForm.module.css";
 export default class ContactForm extends Component {
   state = {
     name: "",
+    number: "",
   };
 
   handleChange = (e) => {
@@ -14,9 +15,10 @@ export default class ContactForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state.name);
+    this.props.onSubmit(this.state.name, this.state.number);
 
     this.setState({ name: "" });
+    this.setState({ number: "" });
   };
 
   render() {
@@ -31,6 +33,16 @@ export default class ContactForm extends Component {
           required
           onChange={this.handleChange}
           value={this.state.name}
+        />
+
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
+          onChange={this.handleChange}
+          value={this.state.number}
         />
 
         <button name="" type="submit">
