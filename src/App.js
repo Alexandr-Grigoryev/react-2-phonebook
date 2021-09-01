@@ -2,6 +2,7 @@ import { Component } from "react";
 import Container from "./Components/Container/Container";
 import ContactForm from "./Components/ContactForm/ContactForm";
 import ContactList from "./Components/ContactList/ContactList";
+import Filter from "./Components/Filter/Filter";
 import shortid from "shortid";
 
 export default class App extends Component {
@@ -12,6 +13,7 @@ export default class App extends Component {
       { id: "id-3", name: "Eden Clements", number: "645-17-79" },
       { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
     ],
+    filter: "",
   };
 
   formSubmitHandler = (name, number) => {
@@ -26,7 +28,13 @@ export default class App extends Component {
     }));
   };
 
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   render() {
+    const { filter } = this.state;
+
     return (
       <Container>
         <div>
@@ -34,7 +42,7 @@ export default class App extends Component {
           <ContactForm onSubmit={this.formSubmitHandler} />
 
           <h2>Contacts</h2>
-          {/* <Filter /> */}
+          <Filter value={filter} onChange={this.changeFilter} />
           <ContactList list={this.state.contacts} />
         </div>
       </Container>
