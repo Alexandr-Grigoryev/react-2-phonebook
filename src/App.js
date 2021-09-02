@@ -23,17 +23,41 @@ export default class App extends Component {
       number,
     };
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
-    }));
+    const { contacts } = this.state;
+
+    if (contacts.find((contact) => contact.name === name)) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts],
+      }));
+    }
   };
 
   changeFilter = (e) => {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  deleteItem = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
+  };
+
   render() {
     const { filter } = this.state;
+    const visibleContacts = this.getVisibleContacts();
 
     return (
       <Container>
@@ -43,7 +67,7 @@ export default class App extends Component {
 
           <h2>Contacts</h2>
           <Filter value={filter} onChange={this.changeFilter} />
-          <ContactList list={this.state.contacts} />
+          <ContactList list={visibleContacts} onDelete={this.deleteItem} />
         </div>
       </Container>
     );

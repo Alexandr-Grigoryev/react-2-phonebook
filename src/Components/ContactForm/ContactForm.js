@@ -35,6 +35,7 @@ export default class ContactForm extends Component {
           value={this.state.name}
         />
 
+        <p>Number</p>
         <input
           type="tel"
           name="number"

@@ -6,7 +6,12 @@ export default class ContactList extends Component {
     return (
       <ul>
         {this.props.list.map((item) => (
-          <ContactListItem item={item} key={item.id} />
+          <ContactListItem
+            item={item}
+            key={item.id}
+            onDelete={this.props.onDelete}
+            id={item.id}
+          />
         ))}
       </ul>
     );

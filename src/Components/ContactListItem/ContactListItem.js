@@ -1,9 +1,12 @@
 import { Component } from "react";
 export default class ContactListItem extends Component {
   render() {
+    const { item, onDelete, id } = this.props;
+
     return (
       <li>
-        {this.props.item.name}:{this.props.item.number}
+        {item.name}:{item.number}
+        <button onClick={() => onDelete(id)}>Delete</button>
       </li>
     );
   }
