@@ -67,7 +67,14 @@ export default class App extends Component {
 
           <h2>Contacts</h2>
           <Filter value={filter} onChange={this.changeFilter} />
-          <ContactList list={visibleContacts} onDelete={this.deleteItem} />
+          <ContactList list={visibleContacts} onDelete={this.deleteItem}>
+            {/* <ContactListItem
+              item={item}
+              key={item.id}
+              onDelete={this.props.onDelete}
+              id={item.id}
+            /> */}
+          </ContactList>
         </div>
       </Container>
     );
