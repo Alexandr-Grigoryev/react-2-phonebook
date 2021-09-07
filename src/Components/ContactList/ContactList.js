@@ -1,20 +1,8 @@
 import { Component } from "react";
-import ContactListItem from "../ContactListItem/ContactListItem";
 
 export default class ContactList extends Component {
   render() {
-    return (
-      <ul>
-        {this.props.list.map((item) => (
-          <ContactListItem
-            item={item}
-            key={item.id}
-            onDelete={this.props.onDelete}
-            id={item.id}
-          />
-        ))}
-      </ul>
-    );
+    return <ul>{this.props.children}</ul>;
   }
 }
 
